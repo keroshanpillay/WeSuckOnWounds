@@ -2,6 +2,7 @@ import serial
 import time
 import csv
 import numpy as np
+import os
 
 ser = serial.Serial('/dev/cu.usbmodem2101', 9600) # Check your COM port
 
@@ -12,7 +13,7 @@ def to_resistance(voltage, R_fixed):
     if voltage !=0:
         return (5 - voltage) / (voltage / R_fixed)
     else:
-        return 1e6
+        return np.inf
 
 time.sleep(2) # Wait for the serial connection to initialize
 
@@ -35,7 +36,7 @@ def getForce(force_data, resistance_data, resistance):
 
 R_FIXED = 2200 # Fixed resistor in the circuit, in ohms
 
-with open('resistance_data.csv', 'w', newline='') as file:
+with open('force_data_syringe_2.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(["Timestamp", "Resistance (Ohms)", "Force (g)"]) # Write the header
 
@@ -48,3 +49,7 @@ with open('resistance_data.csv', 'w', newline='') as file:
             force = getForce(forces, resistances, resistance)
             print("Force: ", force)
             writer.writerow([time.time(), resistance, force]) # Write timestamp and pressure data to the .csv file
+
+            # Flush the buffer
+            file.flush()
+            os.fsync(file.fileno())

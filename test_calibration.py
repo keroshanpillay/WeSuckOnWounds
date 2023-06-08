@@ -28,7 +28,7 @@ def getForce(force_data, resistance_data, resistance):
     force = np.exp(log_force)
     return force
 
-test_resistance = 5e3
+test_resistance = np.inf
 
 print(getForce(forces, resistances, test_resistance)) 
 print(getForce(forces_man, resistances_man, test_resistance))
