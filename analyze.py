@@ -13,7 +13,7 @@ def plot_trial(file_name, label):
     df["Timestamp"] = pd.to_numeric(df["Timestamp"], errors='coerce')
 
     #Area parameters
-    D_exit = 5e-3
+    D_exit = 2e-2
     area = np.pi * (D_exit / 2)**2 # Exit area of syringe, in meters squared
 
     # Convert force to pressure
@@ -23,20 +23,20 @@ def plot_trial(file_name, label):
     df = df.dropna()
 
     # Trim the data to start at the first non-zero reading and end at the last non-zero reading
-    CUTOFF = 450
+    CUTOFF = 0
     df = df[df["Pressure (Pa)"] > CUTOFF]
 
     # Convert timestamp to relative time (in seconds)
     df['Relative Time (s)'] = df['Timestamp'] - df['Timestamp'].iloc[0]
 
     # Apply Savitzky-Golay filter to the Pressure
-    df['Filtered Pressure (Pa)'] = savgol_filter(df['Pressure (Pa)'], 51, 3) # window size 51, polynomial order 3
+    # df['Filtered Pressure (Pa)'] = savgol_filter(df['Pressure (Pa)'], 51, 3) # window size 51, polynomial order 3
 
     # Plot the filtered pressure vs time
-    plt.plot(df['Relative Time (s)'], df['Filtered Pressure (Pa)'], label=label)
+    plt.plot(df['Relative Time (s)'], df['Pressure (Pa)'], label=label)
 
 # List of CSV files for each trial
-file_names = ['force_data_syringe.csv', 'force_data_syringe_2.csv']  # Add more file names as needed
+file_names = ['retrofit1.csv', 'retrofit2.csv', 'retrofit4.csv', 'retrofit5.csv', 'retrofit6.csv', 'retrofit7.csv']  # Add more file names as needed
 
 # Plot each trial
 for i, file_name in enumerate(file_names):

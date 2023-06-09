@@ -4,7 +4,7 @@ import csv
 import numpy as np
 import os
 
-ser = serial.Serial('/dev/cu.usbmodem2101', 9600) # Check your COM port
+ser = serial.Serial('/dev/cu.usbmodem1101', 9600) # Check your COM port
 
 def calculate_pressure(force, area):
     return force / area
@@ -21,7 +21,7 @@ time.sleep(2) # Wait for the serial connection to initialize
 forces = np.array([20, 80, 200, 400, 800, 30, 50]) # Convert from grams to Newtons 
 resistances = np.array([70e3, 20e3, 8500, 5000, 3000, 50000, 30e3])
 
-def getFit(forces, resistances):
+def getFit(forces, resistances): 
     log_forces = np.log(forces)
     log_resistances = np.log(resistances)
     coefficients = np.polyfit(log_forces, log_resistances, 1)
@@ -36,7 +36,7 @@ def getForce(force_data, resistance_data, resistance):
 
 R_FIXED = 2200 # Fixed resistor in the circuit, in ohms
 
-with open('force_data_syringe_2.csv', 'w', newline='') as file:
+with open('retrofit7.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(["Timestamp", "Resistance (Ohms)", "Force (g)"]) # Write the header
 
