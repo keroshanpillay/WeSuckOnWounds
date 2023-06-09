@@ -13,7 +13,7 @@ def plot_trial(file_name, label):
     df["Timestamp"] = pd.to_numeric(df["Timestamp"], errors='coerce')
 
     #Area parameters
-    D_exit = 2e-2
+    D_exit = 1.25e-2
     area = np.pi * (D_exit / 2)**2 # Exit area of syringe, in meters squared
 
     # Convert force to pressure
