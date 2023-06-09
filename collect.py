@@ -36,7 +36,7 @@ def getForce(force_data, resistance_data, resistance):
 
 R_FIXED = 2200 # Fixed resistor in the circuit, in ohms
 
-with open('retrofit7.csv', 'w', newline='') as file:
+with open('retrofit10.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(["Timestamp", "Resistance (Ohms)", "Force (g)"]) # Write the header
 

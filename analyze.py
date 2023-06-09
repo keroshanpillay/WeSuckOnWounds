@@ -36,7 +36,7 @@ def plot_trial(file_name, label):
     plt.plot(df['Relative Time (s)'], df['Pressure (Pa)'], label=label)
 
 # List of CSV files for each trial
-file_names = ['retrofit1.csv', 'retrofit2.csv', 'retrofit4.csv', 'retrofit5.csv', 'retrofit6.csv', 'retrofit7.csv']  # Add more file names as needed
+file_names = ['retrofit1.csv', 'retrofit4.csv', 'retrofit5.csv', 'retrofit6.csv', 'retrofit7.csv', 'retrofit8.csv', 'retrofit10.csv']  # Add more file names as needed
 
 # Plot each trial
 for i, file_name in enumerate(file_names):
